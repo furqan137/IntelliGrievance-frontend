@@ -21,6 +21,9 @@ import AppLayout from "./layouts/AppLayout";
 import UserRoute from "./routes/UserRoute";
 import AdminRoute from "./routes/AdminRoute";
 
+import NotFound from "./pages/NotFound";
+
+
 export default function App() {
   return (
     <Routes>
@@ -110,7 +113,7 @@ export default function App() {
       />
 
       {/* 🚫 404 */}
-      <Route path="*" element={<div>404</div>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

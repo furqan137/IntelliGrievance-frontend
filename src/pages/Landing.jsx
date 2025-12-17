@@ -1,98 +1,131 @@
 import { Link } from "react-router-dom";
-import { Brain, BarChart3, MessageSquare } from "lucide-react";
+import {
+  Brain,
+  BarChart3,
+  MessageSquare,
+  ShieldCheck,
+  ArrowRight
+} from "lucide-react";
+import { motion } from "framer-motion";
+
+// ✅ IMPORT LOCAL HERO IMAGE
+import HeroImage from "../assets/hero-image.jpg";
 
 export default function Landing() {
   return (
-    <div className="w-full text-gray-800 overflow-x-hidden">
+    <div className="w-full text-gray-800 overflow-x-hidden bg-white">
+
       {/* ================= HEADER ================= */}
-      <header className="w-full bg-white shadow-sm fixed top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <header className="fixed top-0 w-full bg-white/80 backdrop-blur z-50 border-b">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2 font-bold text-xl">
             <span className="text-blue-600">🧠</span>
             IntelliGrievance
           </div>
 
           <nav className="hidden md:flex gap-8 text-sm font-medium">
-            <a href="/about" className="hover:text-blue-600">About</a>
             <a href="#features" className="hover:text-blue-600">Features</a>
+            <a href="#about" className="hover:text-blue-600">About</a>
             <Link to="/login" className="hover:text-blue-600">Login</Link>
           </nav>
 
           <Link
             to="/register"
-            className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700"
+            className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition"
           >
-            Register
+            Get Started
           </Link>
         </div>
       </header>
 
       {/* ================= HERO ================= */}
-      {/* Offset for fixed header */}
-      <section className="pt-28 pb-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+      <section className="pt-32 pb-24 bg-gradient-to-br from-blue-50 via-white to-green-50">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
           {/* LEFT */}
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-              AI-Driven Complaint <br /> & Suggestion Management
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+              Smart AI-Powered <br />
+              <span className="text-blue-600">Complaint Management</span>
             </h1>
 
-            <p className="text-gray-600 max-w-xl mb-8">
-              Empower smarter communication between citizens and organizations
-              with intelligent categorization and real-time tracking.
+            <p className="text-gray-600 max-w-xl mb-8 text-lg">
+              A modern platform that uses AI to categorize, track, and resolve complaints
+              with transparency and real-time insights.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/register"
-                className="bg-blue-600 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700"
+                className="bg-blue-600 text-white px-7 py-4 rounded-full font-medium hover:bg-blue-700 flex items-center gap-2 transition"
               >
-                Get Started →
+                Start Free <ArrowRight size={18} />
               </Link>
 
               <Link
                 to="/login"
-                className="border border-blue-600 text-blue-600 px-6 py-3 rounded-full font-medium hover:bg-blue-50"
+                className="border border-blue-600 text-blue-600 px-7 py-4 rounded-full font-medium hover:bg-blue-50 transition"
               >
                 Login
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT */}
-          <div className="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-4">
-              <Brain className="text-blue-600" size={32} />
+          {/* RIGHT – HERO IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9 }}
+            className="relative"
+          >
+            <div className="bg-white rounded-3xl shadow-2xl p-6">
+              <img
+                src={HeroImage}
+                alt="AI Complaint Management Dashboard"
+                className="w-full rounded-2xl"
+              />
             </div>
-            <p className="text-sm text-gray-500">AI-Powered Intelligence</p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ================= FEATURES ================= */}
-      <section id="features" className="py-20 bg-white">
+      <section id="features" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-14">
-            Complaints are automatically analyzed, categorized, and tracked using AI.
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold mb-4"
+          >
+            How IntelliGrievance Works
+          </motion.h2>
+
+          <p className="text-gray-600 max-w-2xl mx-auto mb-16">
+            Automated workflows powered by AI ensure faster, transparent,
+            and smarter grievance handling.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             <FeatureCard
-              icon={<Brain className="text-blue-600" />}
+              icon={<Brain className="text-blue-600" size={26} />}
               title="AI Categorization"
-              text="Automatically classify complaints using machine learning."
+              text="Machine learning automatically classifies complaints accurately."
             />
             <FeatureCard
-              icon={<BarChart3 className="text-green-600" />}
-              title="Real-time Tracking"
-              text="Track complaint progress and resolution status instantly."
+              icon={<BarChart3 className="text-green-600" size={26} />}
+              title="Live Tracking"
+              text="Monitor complaint status and resolution progress in real-time."
               bg="bg-green-100"
             />
             <FeatureCard
-              icon={<MessageSquare className="text-purple-600" />}
-              title="Instant Feedback"
-              text="Get immediate acknowledgement and updates."
+              icon={<MessageSquare className="text-purple-600" size={26} />}
+              title="Instant Updates"
+              text="Users receive instant notifications and acknowledgements."
               bg="bg-purple-100"
             />
           </div>
@@ -100,66 +133,78 @@ export default function Landing() {
       </section>
 
       {/* ================= ABOUT ================= */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">
-              About IntelliGrievance
+      <section id="about" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h2 className="text-4xl font-bold mb-6">
+              Built for Trust & Transparency
             </h2>
 
             <p className="text-gray-600 mb-4">
-              IntelliGrievance is an AI-powered platform designed to improve
-              transparency, accountability, and efficiency in grievance handling.
-            </p>
-
-            <p className="text-gray-600 mb-4">
-              The system categorizes complaints, analyzes trends, and enables
-              faster resolutions through real-time insights.
+              IntelliGrievance empowers organizations to manage complaints
+              efficiently while ensuring fairness and accountability.
             </p>
 
             <p className="text-gray-600">
-              Our mission is to modernize complaint management using technology.
+              Advanced analytics help identify trends, improve services,
+              and enhance user satisfaction.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-sm">
-            <ul className="space-y-4 text-sm text-gray-700">
-              <li>✅ AI-powered categorization</li>
-              <li>✅ Live complaint tracking</li>
-              <li>✅ Secure & transparent workflow</li>
-              <li>✅ Faster resolution</li>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="bg-white rounded-3xl p-10 shadow-lg"
+          >
+            <ul className="space-y-5 text-sm text-gray-700">
+              <li className="flex gap-3"><ShieldCheck className="text-blue-600" /> Secure & encrypted data</li>
+              <li className="flex gap-3"><ShieldCheck className="text-blue-600" /> Transparent workflows</li>
+              <li className="flex gap-3"><ShieldCheck className="text-blue-600" /> Faster resolutions</li>
+              <li className="flex gap-3"><ShieldCheck className="text-blue-600" /> AI-driven insights</li>
             </ul>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ================= CTA ================= */}
-      <section className="py-20 bg-white text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          Ready to Get Started?
-        </h2>
-        <p className="text-gray-600 mb-8">
-          Join users improving communication through intelligent complaint management.
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold mb-4"
+        >
+          Start Managing Complaints Smarter
+        </motion.h2>
+
+        <p className="mb-10 opacity-90">
+          Join organizations modernizing grievance handling with AI.
         </p>
 
         <Link
           to="/register"
-          className="bg-blue-600 text-white px-8 py-4 rounded-full font-medium hover:bg-blue-700"
+          className="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold hover:bg-gray-100 transition"
         >
-          Create Your Account
+          Create Free Account
         </Link>
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-black text-gray-300 py-14">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-          <FooterCol title="IntelliGrievance" items={["AI complaint management system"]} />
-          <FooterCol title="Product" items={["Features", "Pricing"]} />
+      <footer className="bg-black text-gray-400 py-16">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+          <FooterCol title="IntelliGrievance" items={["AI-powered complaint platform"]} />
+          <FooterCol title="Product" items={["Features", "Security", "Roadmap"]} />
           <FooterCol title="Company" items={["About", "Contact"]} />
-          <FooterCol title="Legal" items={["Privacy Policy", "Terms of Service"]} />
+          <FooterCol title="Legal" items={["Privacy Policy", "Terms"]} />
         </div>
 
-        <p className="text-center text-xs text-gray-500 mt-10">
+        <p className="text-center text-xs text-gray-600 mt-10">
           © 2025 IntelliGrievance. All rights reserved.
         </p>
       </footer>
@@ -167,27 +212,33 @@ export default function Landing() {
   );
 }
 
-/* ================= SMALL COMPONENTS ================= */
+/* ================= COMPONENTS ================= */
 
 function FeatureCard({ icon, title, text, bg = "bg-blue-100" }) {
   return (
-    <div className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition text-left">
-      <div className={`w-12 h-12 ${bg} rounded-lg flex items-center justify-center mb-4`}>
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.3 }}
+      className="bg-gray-50 p-10 rounded-2xl shadow-sm hover:shadow-xl text-left"
+    >
+      <div className={`w-14 h-14 ${bg} rounded-xl flex items-center justify-center mb-5`}>
         {icon}
       </div>
-      <h3 className="font-semibold text-lg mb-2">{title}</h3>
-      <p className="text-sm text-gray-600">{text}</p>
-    </div>
+      <h3 className="font-semibold text-xl mb-2">{title}</h3>
+      <p className="text-gray-600 text-sm">{text}</p>
+    </motion.div>
   );
 }
 
 function FooterCol({ title, items }) {
   return (
     <div>
-      <h4 className="font-semibold text-white mb-3">{title}</h4>
+      <h4 className="font-semibold text-white mb-4">{title}</h4>
       <ul className="text-sm space-y-2">
-        {items.map((i, idx) => (
-          <li key={idx}>{i}</li>
+        {items.map((item, i) => (
+          <li key={i} className="hover:text-white transition cursor-pointer">
+            {item}
+          </li>
         ))}
       </ul>
     </div>
